@@ -13,7 +13,7 @@ class SPHCoordinator:
         self.time_step = time_step
         self.boundary_position = 0.0
         self.channels = [grpc.insecure_channel('localhost:50051'),
-                         grpc.insecure_channel('192.168.100.6:50051')]
+                         grpc.insecure_channel('localhost2:50051')] # хост второго сревера 
         
         self.stubs = [sph_optimized_pb2_grpc.OptimizedSPHSimulationStub(self.channels[0]),
                      sph_optimized_pb2_grpc.OptimizedSPHSimulationStub(self.channels[1]) ]
