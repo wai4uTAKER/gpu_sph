@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+service OptimizedSPHSimulation {
+  rpc SimulateStep (SimulationRequest) returns (SimulationResponse);
+  rpc ExchangeBoundaryParticles (BoundaryRequest) returns (BoundaryResponse);
+}
+
+message SimulationRequest {
+  float time_step = 1;
+  float boundary_position = 2;
+}
+
+message SimulationResponse {
+  repeated float positions_x = 1;
+  repeated float positions_y = 2;
+  repeated float positions_z = 3;
+  repeated float velocities_x = 4;
+  repeated float velocities_y = 5;
+  repeated float velocities_z = 6;
+  repeated float densities = 7;
+  repeated float pressures = 8;
+}
+
+message BoundaryRequest {
+  repeated float positions_x = 1;
+  repeated float positions_y = 2;
+  repeated float positions_z = 3;
+  repeated float velocities_x = 4;
+  repeated float velocities_y = 5;
+  repeated float velocities_z = 6;
+  repeated float masses = 7;
+  repeated float densities = 8;
+  repeated float pressures = 9;
+  int32 source_domain = 10;
+}
+
+message BoundaryResponse {
+  bool success = 1;
+}
